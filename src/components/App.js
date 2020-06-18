@@ -7,7 +7,7 @@ class App extends React.Component {
     return (
       <Fragment>
         <div className="main">
-          <Header />
+          <Header nickname="Admin" />
           <Product />
         </div>
       </Fragment>
