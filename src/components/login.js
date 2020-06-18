@@ -1,6 +1,4 @@
 import React, { Fragment } from "react";
-import "../css/app.scss";
-import "../css/style.scss";
 
 class Login extends React.Component {
   render() {
