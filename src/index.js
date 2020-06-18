@@ -1,7 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Login from "./components/login";
-import "../src/css/app.scss";
-import "../src/css/style.scss";
 
-ReactDOM.render(<Login />, document.querySelector("#root"));
+import App from "components/App";
+// import Login from "./components/Login";
+
+import "css/app.scss";
+import "css/style.scss";
+
+ReactDOM.render(<App />, document.querySelector("#root"));
