@@ -4,6 +4,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import ToolBox from "components/ToolBox";
 import Product from "components/Product";
 import Panel from "components/Panel"; // rendering panel in global
+import AddInventory from "components/AddInventory";
 
 class Products extends React.Component {
   state = {
@@ -33,7 +34,24 @@ class Products extends React.Component {
   };
 
   toAdd = () => {
-    Panel.open();
+    Panel.open({
+      component: AddInventory,
+      callback: (data) => {
+        if (data) {
+          this.add(data);
+        }
+      },
+    });
+  };
+  add = (product) => {
+    const _product = [...this.state.products];
+    _product.push(product);
+    const _sProducts = [...this.state.sourceProducts];
+    _sProducts.push(product);
+    this.setState({
+      products: _product,
+      sourceProducts: _sProducts,
+    });
   };
   render() {
     return (
