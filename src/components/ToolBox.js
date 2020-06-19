@@ -1,6 +1,23 @@
 import React, { Fragment } from "react";
 
 class ToolBox extends React.Component {
+  state = {
+    searchText: "",
+  };
+  handleChange = (event) => {
+    // event.preventDefault();
+    const value = event.target.value;
+    this.setState({
+      searchText: value,
+    });
+    this.props.search(value);
+  };
+  clearSearchText = () => {
+    this.setState({
+      searchText: "",
+    });
+    this.props.search("");
+  };
   render() {
     return (
       <Fragment>
@@ -13,10 +30,14 @@ class ToolBox extends React.Component {
                   type="text"
                   className="input search-input"
                   placeholder="search product"
+                  value={this.state.searchText}
+                  onChange={this.handleChange}
                 />
               </div>
               <div className="control">
-                <button className="button">x</button>
+                <button className="button" onClick={this.clearSearchText}>
+                  x
+                </button>
               </div>
             </div>
           </div>

@@ -6,21 +6,34 @@ import Product from "components/Product";
 class Products extends React.Component {
   state = {
     products: [],
+    sourceProducts: [],
   };
 
   componentDidMount() {
     axios.get("/products").then((res) => {
       this.setState({
         products: res.data,
+        sourceProducts: res.data,
       });
     });
   }
+  search = (text) => {
+    let _products = [...this.state.sourceProducts];
 
+    _products = _products.filter((d) => {
+      const matchArr = d.name.match(new RegExp(text, "gi"));
+      return !!matchArr;
+    });
+
+    this.setState({
+      products: _products,
+    });
+  };
   render() {
     return (
       <Fragment>
         <div>
-          <ToolBox />
+          <ToolBox search={this.search} />
           <div className="products">
             <div className="columns is-multiline is-desktop">
               {this.state.products.map((d) => {
