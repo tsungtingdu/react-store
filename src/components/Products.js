@@ -3,6 +3,7 @@ import axios from "commons/axios";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import ToolBox from "components/ToolBox";
 import Product from "components/Product";
+import Panel from "components/Panel"; // rendering panel in global
 
 class Products extends React.Component {
   state = {
@@ -30,6 +31,10 @@ class Products extends React.Component {
       products: _products,
     });
   };
+
+  toAdd = () => {
+    Panel.open();
+  };
   render() {
     return (
       <Fragment>
@@ -53,6 +58,9 @@ class Products extends React.Component {
                 })}
               </TransitionGroup>
             </div>
+            <button className="button is-primary add-btn" onClick={this.toAdd}>
+              add
+            </button>
           </div>
         </div>
       </Fragment>
