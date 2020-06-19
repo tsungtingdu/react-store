@@ -1,5 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 import axios from "commons/axios";
+import { toast } from "react-toastify";
 
 class AddInventory extends React.Component {
   state = {
@@ -19,11 +20,15 @@ class AddInventory extends React.Component {
   submit = (e) => {
     e.preventDefault();
     const product = { ...this.state };
-    axios.post("products", product).then((res) => {
-      console.log(res.data);
-      alert("Add inventory successfully!");
-      this.props.close(res.data);
-    });
+    axios
+      .post("products", product)
+      .then((res) => {
+        this.props.close(res.data);
+        toast.success("Add inventory successfully!");
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
   };
   render() {
     return (
