@@ -53,6 +53,20 @@ class Products extends React.Component {
       sourceProducts: _sProducts,
     });
   };
+  update = (product) => {
+    // update products
+    const _product = [...this.state.products];
+    const _index = _product.findIndex((d) => d.id === product.id);
+    _product.splice(_index, 1, product);
+    // update source products
+    const _sProducts = [...this.state.sourceProducts];
+    const _sIndex = _sProducts.findIndex((d) => d.id === product.id);
+    _sProducts.splice(_sIndex, 1, product);
+    this.setState({
+      products: _product,
+      sourceProducts: _sProducts,
+    });
+  };
   render() {
     return (
       <Fragment>
@@ -69,7 +83,7 @@ class Products extends React.Component {
                       key={d.id}
                     >
                       <div className="column is-3" key={d.id}>
-                        <Product product={d} />
+                        <Product product={d} update={this.update} />
                       </div>
                     </CSSTransition>
                   );

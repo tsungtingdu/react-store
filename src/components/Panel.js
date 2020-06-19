@@ -14,10 +14,17 @@ class Panel extends React.Component {
     });
     this.state.callback(data);
   };
-  open = (options) => {
-    const { component, callback } = options;
+  open = (
+    options = {
+      component: null,
+      callback: () => {},
+      props: {},
+    }
+  ) => {
+    const { props, component, callback } = options;
     const _key = new Date().getTime();
     const _component = React.createElement(component, {
+      ...props,
       close: this.close,
       key: _key,
     });
