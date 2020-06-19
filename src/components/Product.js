@@ -6,7 +6,10 @@ class Product extends React.Component {
   toEdit = () => {
     Panel.open({
       component: EditInventory,
-      props: { product: this.props.product },
+      props: {
+        product: this.props.product,
+        deleteProduct: this.props.delete,
+      },
       callback: (data) => {
         if (data) this.props.update(data);
       },
