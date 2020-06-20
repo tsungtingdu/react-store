@@ -38,8 +38,13 @@ const getUser = () => {
   }
 };
 
+const logout = () => {
+  localStorage.removeItem(JWT);
+};
+
 global.auth = {
   setToken,
   getToken,
   getUser,
+  logout,
 };

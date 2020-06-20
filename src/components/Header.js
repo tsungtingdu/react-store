@@ -1,40 +1,42 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import UserProfile from "components/UserProfile";
+import Panel from "components/Panel";
 
-class Header extends React.Component {
-  renderLink() {
-    const nickname = this.props.user.nickname;
-    if (nickname) {
-      return (
-        <span className="nickname">
-          <i className="far fa-user"></i>
-          {nickname}
-        </span>
-      );
-    } else {
-      return (
-        <Fragment>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-        </Fragment>
-      );
-    }
-  }
-
-  render() {
-    return (
-      <Fragment>
-        <div className="header">
-          <div className="grid">
-            <div className="start">
-              <Link to="/">Home</Link>
-            </div>
-            <div className="end">{this.renderLink()}</div>
-          </div>
+const Header = (props) => {
+  const toProfile = () => {
+    Panel.open({
+      component: UserProfile,
+      props: { user: props.user },
+      callback: (data) => {
+        if (data === "logout") {
+          props.history.go(0);
+        }
+      },
+    });
+  };
+  return (
+    <div className="header">
+      <div className="grid">
+        <div className="start">
+          <Link to="/">Home</Link>
         </div>
-      </Fragment>
-    );
-  }
-}
+        <div className="end">
+          {props.user.nickname ? (
+            <span className="nickname" onClick={toProfile}>
+              <i className="far fa-user"></i>
+              {props.user.nickname}
+            </span>
+          ) : (
+            <Fragment>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Register</Link>
+            </Fragment>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Header;
+export default withRouter(Header);
