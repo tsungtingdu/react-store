@@ -12,7 +12,7 @@ const getToken = () => {
 
 const isLogin = () => {
   const jwtoken = getToken();
-  return !!jwtoken && isTokenExpired(jwtoken);
+  return !!jwtoken && !isTokenExpired(jwtoken);
 };
 
 const isTokenExpired = (token) => {
