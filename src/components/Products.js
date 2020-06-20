@@ -10,6 +10,7 @@ class Products extends React.Component {
   state = {
     products: [],
     sourceProducts: [],
+    cartNum: 0,
   };
 
   componentDidMount() {
@@ -19,6 +20,7 @@ class Products extends React.Component {
         sourceProducts: res.data,
       });
     });
+    this.updateCartNum();
   }
   search = (text) => {
     let _products = [...this.state.sourceProducts];
@@ -75,11 +77,24 @@ class Products extends React.Component {
       sourceProducts: _sProducts,
     });
   };
+  updateCartNum = async () => {
+    let cartNum = await this.initCartNum();
+    this.setState({ cartNum: cartNum });
+  };
+
+  initCartNum = async () => {
+    const res = await axios.get("/carts");
+    const carts = res.data || [];
+    const cartNum = carts
+      .map((d) => d.mount)
+      .reduce((a, value) => a + value, 0);
+    return cartNum;
+  };
   render() {
     return (
       <Fragment>
         <div>
-          <ToolBox search={this.search} />
+          <ToolBox search={this.search} cartNum={this.state.cartNum} />
           <div className="products">
             <div className="columns is-multiline is-desktop">
               <TransitionGroup component={null}>
@@ -95,6 +110,7 @@ class Products extends React.Component {
                           product={d}
                           update={this.update}
                           delete={this.delete}
+                          updateCartNum={this.updateCartNum}
                         />
                       </div>
                     </CSSTransition>

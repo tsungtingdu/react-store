@@ -38,6 +38,7 @@ class Product extends React.Component {
         await axios.post("/carts", cart);
       }
       toast.success("Add to cart successfully!");
+      this.props.updateCartNum();
     } catch (err) {
       console.log(err);
       toast.error(err);
