@@ -1,13 +1,13 @@
 import decode from "jwt-decode";
 
-const JTW = "store_token_id";
+const JWT = "store_token_id";
 
 const setToken = (token) => {
-  localStorage.setItem(JTW, token);
+  localStorage.setItem(JWT, token);
 };
 
 const getToken = () => {
-  return localStorage.getItem(JTW);
+  return localStorage.getItem(JWT);
 };
 
 const isLogin = () => {
