@@ -3,6 +3,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Layout from "Layout";
 import CartItem from "components/CartItem";
 import axios from "commons/axios";
+import { toast } from "react-toastify";
 
 // use React hook instead of class
 const Cart = () => {
@@ -29,6 +30,7 @@ const Cart = () => {
   const deleteCart = (cart) => {
     const _carts = carts.filter((d) => d.id !== cart.id);
     setCarts(_carts);
+    toast.warning("Remove an item");
   };
   return (
     <Layout>
@@ -52,7 +54,7 @@ const Cart = () => {
 
         <div className="cart-total">
           Total:
-          <span className="total-price">{totalPrice()}</span>
+          <span className="total-price">{totalPrice}</span>
         </div>
       </div>
     </Layout>
