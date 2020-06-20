@@ -5,6 +5,7 @@ import App from "pages/App";
 import Cart from "pages/Cart";
 import Login from "pages/Login";
 import NotFound from "pages/NotFound";
+import Register from "pages/Register";
 
 const Router = () => (
   <BrowserRouter>
@@ -12,6 +13,7 @@ const Router = () => (
       <Route path="/" exact component={App}></Route>
       <Route path="/cart" exact component={Cart}></Route>
       <Route path="/login" exact component={Login}></Route>
+      <Route path="/register" exact component={Register}></Route>
       <Route component={NotFound}></Route>
     </Switch>
   </BrowserRouter>
