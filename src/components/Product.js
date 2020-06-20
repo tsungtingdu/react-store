@@ -22,7 +22,6 @@ class Product extends React.Component {
       const { id, name, image, tags, price, status } = this.props.product;
       const res = await axios.get(`/carts?productId=${id}`);
       const carts = res.data;
-      console.log(carts);
       if (carts && carts.length > 0) {
         const cart = carts[0];
         cart.mount += 1;
