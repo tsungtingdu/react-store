@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import Panel from "components/Panel";
 import EditInventory from "components/EditInventory";
+import axios from "commons/axios";
+import { toast } from "react-toastify";
 
 class Product extends React.Component {
   toEdit = () => {
@@ -14,6 +16,32 @@ class Product extends React.Component {
         if (data) this.props.update(data);
       },
     });
+  };
+  addCart = async () => {
+    try {
+      const { id, name, image, tags, price, status } = this.props.product;
+      const res = await axios.get(`/carts?productId=${id}`);
+      const carts = res.data;
+      console.log(carts);
+      if (carts && carts.length > 0) {
+        const cart = carts[0];
+        cart.mount += 1;
+        await axios.put(`/carts/${cart.id}`, cart);
+      } else {
+        const cart = {
+          productId: id,
+          name,
+          image,
+          price,
+          mount: 1,
+        };
+        await axios.post("/carts", cart);
+      }
+      toast.success("Add to cart successfully!");
+    } catch (err) {
+      console.log(err);
+      toast.error(err);
+    }
   };
   render() {
     const { name, image, tags, price, status } = this.props.product;
@@ -46,7 +74,11 @@ class Product extends React.Component {
           </div>
           <div className="p-footer">
             <p className="price">{price}</p>
-            <button className="add-cart" disabled={status === "unavailable"}>
+            <button
+              className="add-cart"
+              disabled={status === "unavailable"}
+              onClick={this.addCart}
+            >
               <i className="fas fa-shopping-cart"></i>
               <i className="fas fa-exclamation"></i>
             </button>
