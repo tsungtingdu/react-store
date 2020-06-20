@@ -1,20 +1,21 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 class Header extends React.Component {
   renderLink() {
-    const nickname = this.props.nickname;
+    const nickname = this.props.user.nickname;
     if (nickname) {
       return (
         <span className="nickname">
           <i className="far fa-user"></i>
-          {this.props.nickname}
+          {nickname}
         </span>
       );
     } else {
       return (
         <Fragment>
-          <a href="/login">Login</a>
-          <a href="/register">Register</a>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
         </Fragment>
       );
     }
@@ -26,7 +27,7 @@ class Header extends React.Component {
         <div className="header">
           <div className="grid">
             <div className="start">
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </div>
             <div className="end">{this.renderLink()}</div>
           </div>

@@ -1,11 +1,23 @@
 import React, { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "commons/axios";
+import { toast } from "react-toastify";
 
 export default function Login(props) {
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => {
-    // redirect
-    // this.props.history.push("/");
+  const onSubmit = async (data) => {
+    try {
+      const { email, password } = data;
+      const res = await axios.post("/auth/login", { email, password });
+      const { jwtoken } = res.data;
+      global.auth.setToken(jwtoken);
+      // redirect
+      props.history.push("/");
+      toast.success("Login successfully");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.response.data.message);
+    }
   };
 
   return (
