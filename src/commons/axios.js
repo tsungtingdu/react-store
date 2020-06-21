@@ -5,6 +5,19 @@ const axios = (baseURL) => {
     baseURL: baseURL || "http://localhost:3001",
     timeout: 1000,
   });
+
+  instance.interceptors.request.use(
+    (config) => {
+      // Do something before request is sent
+      const token = global.auth.getToken();
+      config.headers["Authorization"] = "Bearer " + token;
+      return config;
+    },
+    (error) => {
+      // Do something with request error
+      return Promise.reject(error);
+    }
+  );
   return instance;
 };
 
