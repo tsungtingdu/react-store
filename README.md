@@ -1,68 +1,108 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# My store
 
-## Available Scripts
+This is single page ecommerce website that built with [React](https://github.com/facebook/create-react-app) and [JSON server](https://github.com/typicode/json-server).
 
-In the project directory, you can run:
+As a user, you can
 
-### `yarn start`
+- view product list
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+As a login user, you can
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- add product to cart
+- edit cart items
+- view user profile
 
-### `yarn test`
+As a admin, you can
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- add and edit product
 
-### `yarn build`
+![Imgur](https://i.imgur.com/8GHVg0B.png)
+![Imgur](https://i.imgur.com/OZBLZrm.png)
+![Imgur](https://i.imgur.com/HXUgmKJ.png)
+![Imgur](https://i.imgur.com/36VXP8S.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Stack
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Main page
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- react
+- react-router-dom
+- react-transition-group
+- react-toastify
+- react-hook-form
+- bulma
+- node-sass
 
-### `yarn eject`
+API related
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- axios
+- json-server
+- jsonwebtoken
+- json-decode
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Deployment:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- now
+- serve
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Prerequisite
 
-## Learn More
+Install [Node.js](https://nodejs.org/en/download/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Setup
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. clone api server
 
-### Code Splitting
+```
+$ git clone https://github.com/tsungtingdu/react-store-api
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+2. go to project folder
 
-### Analyzing the Bundle Size
+```
+$ cd react-store-api
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+3. install packages
 
-### Making a Progressive Web App
+```
+$ npm install
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+4. start the api server
 
-### Advanced Configuration
+```
+$ npm run server
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+5. clone web
 
-### Deployment
+```
+$ git clone https://github.com/tsungtingdu/react-store
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+6. go to project folder
 
-### `yarn build` fails to minify
+```
+$ cd react-store
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+7. run the app in dev
+
+```
+$ npm dev
+```
+
+---
+
+### Authors
+
+[tsungtingdu](https://github.com/tsungtingdu) (Tim)
+
+Self-taught and trained in software development knowledge and skills, I am passionate about creating changes through technology.
+
+You can find more about me here:
+
+- [Medium](https://medium.com/tds-note)
+- [LinkedIn](https://www.linkedin.com/in/tsung-ting-tu/)
+- [Teaching Assistant at ALPHA Camp](https://lighthouse.alphacamp.co/users/3247/ta_profile)
