@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
+import { toast } from "react-toastify";
 
 class ToolBox extends React.Component {
   state = {
@@ -20,6 +21,11 @@ class ToolBox extends React.Component {
     this.props.search("");
   };
   goCart = () => {
+    if (!global.auth.isLogin()) {
+      this.props.history.push("/login");
+      toast.warning("Please login");
+      return;
+    }
     this.props.history.push("/cart");
   };
   render() {

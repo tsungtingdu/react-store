@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { withRouter } from "react-router-dom";
 import Panel from "components/Panel";
 import EditInventory from "components/EditInventory";
 import axios from "commons/axios";
@@ -19,6 +20,11 @@ class Product extends React.Component {
   };
   addCart = async () => {
     try {
+      if (!global.auth.isLogin()) {
+        this.props.history.push("/login");
+        toast.warning("Please login");
+        return;
+      }
       const { id, name, image, tags, price, status } = this.props.product;
       const res = await axios.get(`/carts?productId=${id}`);
       const carts = res.data;
@@ -43,6 +49,26 @@ class Product extends React.Component {
       toast.error(err);
     }
   };
+
+  renderManagerBtn = () => {
+    const user = global.auth.getUser() || {};
+
+    if (user.type === 1) {
+      return (
+        <div
+          className="p-head has-text-right"
+          onClick={() => {
+            this.toEdit();
+          }}
+        >
+          <span className="icon out-btn">
+            <i className="fas fa-sliders-h"></i>
+          </span>
+        </div>
+      );
+    }
+  };
+
   render() {
     const { name, image, tags, price, status } = this.props.product;
     const _pClass = {
@@ -53,16 +79,7 @@ class Product extends React.Component {
       <Fragment>
         <div className={_pClass[status]}>
           <div className="p-content">
-            <div
-              className="p-head has-text-right"
-              onClick={() => {
-                this.toEdit();
-              }}
-            >
-              <span className="icon out-btn">
-                <i className="fas fa-sliders-h"></i>
-              </span>
-            </div>
+            {this.renderManagerBtn()}
             <div className="img-wrapper">
               <div className="out-stock-text">Out of Stock</div>
               <figure className="image is4by3">
@@ -89,4 +106,4 @@ class Product extends React.Component {
   }
 }
 
-export default Product;
+export default withRouter(Product);
