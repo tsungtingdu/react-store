@@ -11,7 +11,6 @@ const getToken = () => {
 };
 
 const isLogin = () => {
-  console.log("call isLogin");
   const jwtoken = getToken();
   return !!jwtoken && !isTokenExpired(jwtoken);
 };
