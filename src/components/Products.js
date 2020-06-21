@@ -83,7 +83,8 @@ class Products extends React.Component {
   };
 
   initCartNum = async () => {
-    const res = await axios.get("/carts");
+    const user = global.auth.getUser() || {};
+    const res = await axios.get(`/carts?userId=${user.email}`);
     const carts = res.data || [];
     const cartNum = carts
       .map((d) => d.mount)

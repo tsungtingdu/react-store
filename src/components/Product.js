@@ -20,6 +20,7 @@ class Product extends React.Component {
   };
   addCart = async () => {
     try {
+      const user = global.auth.getUser() || {};
       if (!global.auth.isLogin()) {
         this.props.history.push("/login");
         toast.warning("Please login");
@@ -39,6 +40,7 @@ class Product extends React.Component {
           image,
           price,
           mount: 1,
+          userId: user.email,
         };
         await axios.post("/carts", cart);
       }
