@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 const Cart = () => {
   const [carts, setCarts] = useState([]);
 
+  // useEffect Hook as componentDidMount, componentDidUpdate, and componentWillUnmount combined.
   useEffect(() => {
     const user = global.auth.getUser() || {};
     axios.get(`/carts?userId=${user.email}`).then((res) => setCarts(res.data));

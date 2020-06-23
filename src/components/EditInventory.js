@@ -49,7 +49,7 @@ class EditInventory extends React.Component {
     axios
       .delete(`products/${this.state.id}`)
       .then((res) => {
-        this.props.deleteProduct(this.state.id);
+        this.props.deleteProduct(this.state.id); // Product.js:14
         this.props.close();
         toast.success("Delete inventory successfully!");
       })
