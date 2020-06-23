@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Products from "components/Products";
 import Layout from "Layout";
 

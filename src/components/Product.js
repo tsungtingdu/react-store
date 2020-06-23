@@ -26,7 +26,7 @@ class Product extends React.Component {
         toast.warning("Please login");
         return;
       }
-      const { id, name, image, tags, price, status } = this.props.product;
+      const { id, name, image, price } = this.props.product;
       const res = await axios.get(`/carts?productId=${id}`);
       const carts = res.data;
       if (carts && carts.length > 0) {

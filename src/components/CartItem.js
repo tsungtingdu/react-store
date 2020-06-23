@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import axios from "commons/axios";
 
 const CartItem = (props) => {
